@@ -32,7 +32,7 @@ function mini_project()
         bbox = step(blobAnalysis, filteredForeground);
 
         % Draw bounding boxes around the detected cars
-        %result = insertShape(frame, 'Rectangle', bbox, 'Color', 'green');
+        result = insertShape(frame, 'Rectangle', bbox, 'Color', 'green');
       
         % Display the number of cars found in the video frame
         cars_frame = size(bbox, 1); % cars in frame
@@ -40,17 +40,15 @@ function mini_project()
         if cars_frame > past_frame
             newcars = cars_frame - past_frame;
             numcars = numcars + newcars;
-            %fprintf('cars_frame: %d past_frame: %d numcars: %d \n' ,cars_frame, past_frame, numcars)
-        %elseif (cars_frame < past_frame) || (cars_frame == past_frame)
-         %   numcars = numcars;
         end
+        
 
-        past_frame = cars_frame;  % need to initialzie;
+        past_frame = cars_frame;  
 
-        %result = insertText(result, [10 10], numcars, 'BoxOpacity', 1, ...
-         %   'FontSize', 14);
-        %step(videoPlayer, result);  % display the results
+        result = insertText(result, [10 10], numcars, 'BoxOpacity', 1, ...
+           'FontSize', 14);
+        step(videoPlayer, result);  % display the results
     end
-    %fprintf('number of cars: %d \n',numcars) % should be 7
+    fprintf('number of cars: %d \n',numcars) % should be 7
     release(videoReader); % close the video file
 end
