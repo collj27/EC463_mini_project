@@ -14,7 +14,7 @@ def sampling(fps, vec):
     return newvec
 
 def car_count(newcars, fps):
-    fps = fps             #counted by eye
+    fps = fps            
     estimate = sampling(fps, newcars)
     estimate = sum(estimate)
     print '# of cars: ' , estimate 
@@ -42,7 +42,7 @@ def traffic_graph(numcars, fps , vid_len):
 
 def main():
     #create VideoCapture object and read from video file
-    cap = cv2.VideoCapture('/Users/james/Desktop/CarDetection/cars.mp4')
+    cap = cv2.VideoCapture('car_out.mp4')
     
     #use trained cars XML classifiers
     car_cascade = cv2.CascadeClassifier('cars.xml')
@@ -92,7 +92,7 @@ def main():
     cap.release()
     cv2.destroyAllWindows()
 
-    vid_len = 33             # video length in seconds
+    vid_len = 77             # video length in seconds
     fps = numframes/vid_len  # frames per second
  
     traffic_graph(numcars, fps, vid_len)
